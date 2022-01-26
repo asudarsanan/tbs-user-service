@@ -70,11 +70,9 @@ public class UserAPI {
 
 	@GetMapping(value = "/getUser")
 	public ResponseEntity<List<User>> getUsers() throws Exception{
-		System.out.println("Hai from aPi");
 		String str= null;
 		try {
 			List<User> userList = userService.getUsers();
-			System.out.println(userList);
 			str=environment.getProperty("UserAPI.USER_PROFILE_UPDATE_SUCCESS");
 			return new ResponseEntity<List<User>>(userList,HttpStatus.OK);
 		}

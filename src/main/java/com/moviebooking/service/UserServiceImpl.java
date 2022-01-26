@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService{
 	public User loginUser(String emailId,String password, Role role) throws Exception{
 		User user=null;
 		user=userDAO.loginUser(emailId, password, role);
-		System.out.println(role.getRoleName());
 		if(user==null) {
 			throw new Exception("UserService.INVALID_CREDENTIALS");
 		}
@@ -55,9 +54,7 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public List<User> getUsers() throws Exception {
-		System.out.println("hai from Service");
 		List<User> userList = userDAO.getUsers();
-		System.out.println(userList);
 		if (userList==null) {
 			throw new Exception("UserService.USER_NOT_EXISTS");
 		}

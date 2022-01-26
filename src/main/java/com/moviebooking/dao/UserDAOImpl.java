@@ -26,7 +26,6 @@ public class UserDAOImpl implements UserDAO{
 	
 	@Override
 	public User loginUser(String emailId, String password, Role role){
-		System.out.println(role.getRoleName());
 		Query query = entityManager.createQuery("select u from UserEntity u where u.userEmailid =?1 and u.userPassword =?2 and u.roleEntity.roleName=?3");
 		query.setParameter(1, emailId);
 		query.setParameter(2, password);
@@ -91,25 +90,19 @@ public class UserDAOImpl implements UserDAO{
 	public List <User> getUsers() {
 
 		List <User> userList = new ArrayList<>();
-		System.out.println("Hai from DAO before entity");
 		Query q=entityManager.createQuery("select u from UserEntity u");
 		List<UserEntity> userEntityList=q.getResultList();
-		System.out.println(userEntityList);
 		for (UserEntity userEntity: userEntityList) {
-			System.out.println("Hia");
+
 			if (userEntity != null) {
 				User user = new User();
-				System.out.println("Hai");
-				System.out.println(userEntity.getUserEmailid());
-				System.out.println(userEntity.getUserName());
-				System.out.println(userEntity.getUserId()+userEntity.getUserEmailid());
 				user.setUserPhoneNumber(userEntity.getUserPhoneNumber());
 				user.setUserId(userEntity.getUserId());
 				user.setUserName(userEntity.getUserName());
 				userList.add(user);
 			}
 		}
-		System.out.println(userList);
+
 		return userList;
 	}
 	
